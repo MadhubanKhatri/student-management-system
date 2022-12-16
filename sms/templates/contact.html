@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<style>
+    table{
+        width: 100%;
+    }
+    table th{
+        text-align: center;
+    }
+    table td{
+        text-align: center;
+        padding: 10px;
+        border: 1px solid;
+    }
+</style>
+    <div class="container w-100 my-5">
+        <h1 class="text-center">Contact</h1>
+        <hr>
+        <table>
+            <tr>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Contact Number
+                </th>
+                <th>
+                    Email
+                </th>
+            </tr>
+
+            <tr>
+                <td>
+                    {{contactDetails.first.address}}
+                </td>
+                <td>
+                    {{contactDetails.first.contact_num}}
+                </td>
+                <td>
+                    {{contactDetails.first.email}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+{% endblock %}

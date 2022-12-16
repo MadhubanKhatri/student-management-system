@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container my-5 w-50">
+        <h1 class="text-center">Admin Login</h1>
+        <form action="{% url 'admin_login' %}" method="post">
+            {% csrf_token %}
+            <input type="email" placeholder="Email" class="form-control" name="email">
+            <br>
+            <input type="password" placeholder="Password" class="form-control" name="pwd">
+            <br>
+            <input type="submit" class="btn btn-primary form-control" value="Login">
+        </form>
+    </div>
+
+{% endblock %}

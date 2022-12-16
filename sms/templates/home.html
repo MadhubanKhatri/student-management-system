@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <h1 style="position: absolute; top: 300px; left: 200px; color: white;">Welcome to Home</h1>
+        <a href="{% url 'student_login' %}" style="text-decoration: none; position: absolute; top: 370px; left: 200px; color: white; background-color: blue; padding: 10px; font-weight: bold;">Student Login</a>
+        <img src="{% static 'images/home3.jpg' %}" class="d-block" style="width: 100%; height: 650px;" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/home1.jpg' %}" class="d-block" style="width: 100%; height: 650px;" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'images/home.jpg' %}" class="d-block" style="width: 100%; height: 650px;" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br><br>
+<div class="card text-center">
+  <div class="card-header">
+    <h5>Public Notice</h5>
+  </div>
+  
+  <div class="card-body">
+    <h5 class="card-title">{{notice.title}}</h5>
+    <p class="card-text">{{notice.content}}</p>
+    <table class="table table-small">
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+      </tr>
+      {% for notice in public_notices %}
+        <tr>
+          <td>{{notice.title}}</td>
+          <td>{{notice.content}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+  
+</div>
+
+{% endblock %}

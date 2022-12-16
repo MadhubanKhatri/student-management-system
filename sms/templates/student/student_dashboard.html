@@ -1,0 +1,62 @@
+{% extends 'student/student_base.html' %}
+
+{% block title %}
+    Student - Dashboard
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="margin: 100px;">
+        <h1>Dashboard</h1>
+        <a href="{% url 'view_notices' %}" class="btn btn-warning" style="float: right; margin-top: -70px;">View Notices</a>
+        <table class="table">
+    
+            <tr>
+                <th>Student Name</th>
+                <td>{{student.full_name}}</td>
+
+                <th>Father's Name</th>
+                <td>{{student.father_name}}</td>
+            </tr>
+
+            <tr>
+                <th>Gender</th>
+                <td>{{student.gender}}</td>
+
+                <th>Mother's Name</th>
+                <td>{{student.mother_name}}</td>
+            </tr>
+
+            <tr>
+                <th>Contact Number</th>
+                <td>{{student.contact_num}}</td>
+
+                <th>Email</th>
+                <td>{{student.email}}</td>
+            </tr>
+
+            <tr>
+                <th>Address</th>
+                <td>{{student.address}}</td>
+
+                <th>City</th>
+                <td>{{student.city}}</td>
+            </tr>
+
+            <tr>
+                <th>Student Id</th>
+                <td>{{student.stu_id}}</td>
+
+                <th>Date of Birth</th>
+                <td>{{student.date_of_birth}}</td>
+            </tr>
+
+            <tr>
+                <th>Course</th>
+                <td>{{student.course}}</td>
+
+                <th>User Name</th>
+                <td>{{student.user_name}}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

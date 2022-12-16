@@ -1,0 +1,147 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}
+    Admin - Manage Students
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid w-100" style="margin: 100px 0px;">
+    <h1>Manage Students</h1>
+    <hr>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Student Id</th>
+                <th>Full Name</th>
+                <th>Father Name</th>
+                <th>Mother Name</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>Course</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{student.stu_id}}</td>
+                <td>{{student.full_name}}</td>
+                <td>{{student.father_name}}</td>
+                <td>{{student.mother_name}}</td>
+                <td>{{student.date_of_birth}}</td>
+                <td>{{student.gender}}</td>
+                <td>{{student.address}}</td>
+                <td>{{student.city}}</td>
+                <td>{{student.email}}</td>
+                <td>{{student.contact_num}}</td>
+                <td>{{student.course}}</td>
+                <td>
+                    <a href="{% url 'delete_student' student.id %}" style="text-decoration: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                        </svg>
+                    </a>
+                    /
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#exampleModal{{student.id}}" viewBox="0 0 16 16">
+                        <path
+                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd"
+                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                    </svg>
+                </td>
+            </tr>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal{{student.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Update Student's Details</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'update_student' student.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="full_name" value="{{student.full_name}}" class="form-control" placeholder="Full Name">
+                                <br>
+                                <input type="text" name="f_name" value="{{student.father_name}}" class="form-control" placeholder="Father's Name">
+                                <br>
+                                <input type="text" name="m_name" value="{{student.mother_name}}" class="form-control" placeholder="Mother's Name">
+                                <br>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="inputGroupSelect01">Gender</label>
+                                    <select class="form-select" name="gender" id="inputGroupSelect01">
+                                      <option selected>{{student.gender}}</option>
+                                      <option value="Male">Male</option>
+                                      <option value="Female">Female</option> 
+                                    </select>
+                                </div>
+                                <br>
+                                <input type="text" name="address" value="{{student.address}}" class="form-control" placeholder="Permanant Address">
+                                <br>
+                                <input type="text" name="city" value="{{student.city}}" class="form-control" placeholder="City">
+                                <br>
+                                <input type="email" name="stu_email" value="{{student.email}}" placeholder="Email" class="form-control">
+                                <br>
+                                <input type="tel" name="contact_number" value="{{student.contact_num}}" class="form-control" placeholder="Contact Number">
+                                <br>
+                                <small>Current DoB: {{student.date_of_birth}}</small>
+                                <input type="date" name="dob" value="{{student.date_of_birth}}" class="form-control" id="">
+                                <br>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="inputGroupSelect01">Select Course</label>
+                                    <select class="form-select" name="course" id="inputGroupSelect01">
+                                      <option selected>{{student.course}}</option>
+                                      <option value="BSC">BSC</option>
+                                      <option value="BA">BA</option>
+                                      <option value="BCOM">BCOM</option>
+                                      <option value="BBA">BBA</option>
+                                      <option value="BCA">BCA</option>
+                                      <option value="BTECH">BTECH</option>
+                                      <option value="MSC">MSC</option>
+                                      <option value="MA">MA</option>
+                                      <option value="MCOM">MCOM</option>
+                                      <option value="MBA">MBA</option>
+                                      <option value="MCA">MCA</option>
+                                      <option value="MTECH">MTECH</option>  
+                                    </select>
+                                </div>
+                                <br>
+                                <input type="text" name="stu_id" value="{{student.stu_id}}" class="form-control" placeholder="Student Id">
+                                <br><br>
+                        
+                        
+                                <h4>Login Details</h4>
+                                <hr>
+                                <input type="text" value="{{student.user_name}}" name="stu_user_name" class="form-control" placeholder="Username">
+                                <br>
+                                <input type="password" value="{{student.password}}" name="stu_pwd" class="form-control" placeholder="Password">
+                                <br>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <input type="submit" class="btn btn-primary" value="Update">
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

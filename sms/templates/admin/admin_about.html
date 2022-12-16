@@ -1,0 +1,15 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block body %}
+<div class="container" style="margin: 100px;">
+    <h2>Update About</h2>
+    <br>
+    <form action="{% url 'update_about' aboutDetails.first.id %}" method="post">
+        {% csrf_token %}
+        <textarea name="text" class="form-control" cols="30" rows="10">{{aboutDetails.first.about}}
+        </textarea>
+        <br>
+        <input type="submit" class="form-control btn btn-primary" value="Update">
+    </form>
+</div>
+{% endblock %}

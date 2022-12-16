@@ -1,0 +1,19 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block body %}
+<div class="container" style="margin: 100px;">
+    <h2>Update Contact</h2>
+    <br>
+    <form action="{% url 'update_contact' contactDetails.first.id %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="address" value="{{contactDetails.first.address}}" placeholder="Address" class="form-control">
+        <br>
+        <input type="email" name="email" value="{{contactDetails.first.email}}" placeholder="Email" class="form-control">
+        <br>
+        <input type="number" name="contact" value="{{contactDetails.first.contact_num}}" placeholder="Contact Number" class="form-control">
+        <br>
+        <input type="submit" class="form-control btn btn-primary" value="Update">
+    </form>
+</div>
+
+{% endblock %}

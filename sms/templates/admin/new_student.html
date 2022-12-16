@@ -1,0 +1,70 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}
+    Admin - New Student
+{% endblock %}
+
+{% block body %}
+<div class="container" style="margin: 80px;">
+    <h2>Add Student</h2>
+    <form action="{% url 'add_student' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="full_name" class="form-control" placeholder="Full Name">
+        <br>
+        <input type="text" name="f_name" class="form-control" placeholder="Father's Name">
+        <br>
+        <input type="text" name="m_name" class="form-control" placeholder="Mother's Name">
+        <br>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Gender</label>
+            <select class="form-select" name="gender" id="inputGroupSelect01">
+              <option selected>Choose...</option>
+              <option value="Male">Male</option> 
+              <option value="Female">Female</option>
+            </select>
+        </div>
+        <br>
+        <input type="text" name="address" class="form-control" placeholder="Permanant Address">
+        <br>
+        <input type="text" name="city" class="form-control" placeholder="City">
+        <br>
+        <input type="email" name="stu_email" placeholder="Email" class="form-control">
+        <br>
+        <input type="tel" name="contact_number" class="form-control" placeholder="Contact Number">
+        <br>
+        <input type="date" name="dob" class="form-control" id="">
+        <br>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Select Course</label>
+            <select class="form-select" name="course" id="inputGroupSelect01">
+              <option selected>Choose...</option>
+              <option value="BSC">BSC</option>
+              <option value="BA">BA</option>
+              <option value="BCOM">BCOM</option>
+              <option value="BBA">BBA</option>
+              <option value="BCA">BCA</option>
+              <option value="BTECH">BTECH</option>
+              <option value="MSC">MSC</option>
+              <option value="MA">MA</option>
+              <option value="MCOM">MCOM</option>
+              <option value="MBA">MBA</option>
+              <option value="MCA">MCA</option>
+              <option value="MTECH">MTECH</option>  
+            </select>
+        </div>
+        <br>
+        <input type="text" name="stu_id" class="form-control" placeholder="Student Id">
+        <br><br>
+
+
+        <h4>Login Details</h4>
+        <hr>
+        <input type="text" name="stu_user_name" class="form-control" placeholder="Username">
+        <br>
+        <input type="password" name="stu_pwd" class="form-control" placeholder="Password">
+        <br>
+
+        <input type="submit" class="btn btn-primary form-control" value="Add Student">
+    </form>
+</div>
+{% endblock %}

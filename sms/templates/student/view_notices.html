@@ -1,0 +1,29 @@
+{% extends 'student/student_base.html' %}
+
+{% block title %}
+    Student-Dashboard - Notices
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="margin: 100px;">
+        <h1>Notices for Students</h1>
+        {% if notices %}
+        <table class="table">
+            <tr>
+                <th>S.No</th>
+                <th>Title</th>
+                <th>Content</th>
+            </tr>
+            {% for notice in notices reversed %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{notice.title}}</td>
+                <td>{{notice.content}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <h2 class="text-danger mx-5 my-5">Notices are not available.</h2>
+        {% endif %}
+    </div>
+{% endblock %}

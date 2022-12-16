@@ -1,0 +1,23 @@
+{% extends 'student/student_base.html' %}
+
+{% block title %}
+    Student - Settings
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="margin-top: 100px;">
+        <h2>Settings</h2>
+        <form action="{% url 'student_settings' %}" method="post">
+            {% csrf_token %}
+            <input type="text" value="{{student.user_name}}" name="full_name" class="form-control" placeholder="User Name">
+            <br>
+            <input type="text" value="{{student.password}}" name="current_pwd" class="form-control" placeholder="Current Password">
+            <br>
+            <input type="password" class="form-control" name="new_pwd" placeholder="New Password">
+            <br>
+            <input type="submit" class="form-control btn btn-primary" value="Update">
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}
+    Admin - Notices
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="margin: 100px;">
+        <form action="{% url 'add_notice' %}" method="post">
+            {% csrf_token %}
+            <h2>Add Notice</h2>
+            <input type="text" name="notice_title" class="form-control" placeholder="Title" required>
+            <br>
+            <textarea name="notice_content" cols="30" class="form-control" rows="10" placeholder="Notice Content" required></textarea>
+            <br>
+            <div class="input-group mb-3">
+                <select class="form-select" name="notice_status" id="inputGroupSelect01">
+                  <option value="True">For Public</option>
+                  <option value="False">For Students</option> 
+                </select>
+            </div>
+            <br>
+            <input type="submit" value="Add Notice" class="btn btn-primary form-control">
+            <br>
+        </form>
+    </div>
+{% endblock %}

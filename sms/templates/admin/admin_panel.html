@@ -1,0 +1,31 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}
+    Admin - Dashboard
+{% endblock %}
+
+{% block body %}
+
+    <table class="" style="position: absolute; top: 200px; left: 50px;">
+        <tr>
+            <td>
+                <div class="card" style="width: 36rem; margin: 100px;">
+                    <div class="card-body">
+                      <h1 class="card-title text-danger">{{students.count}}</h1>
+                      <h4 class="card-text">Students</h4>
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <div class="card" style="width: 36rem;">
+                    <div class="card-body">
+                      <h1 class="card-title text-danger">{{teachers.count}}</h1>
+                      <h4 class="card-text">Teachers</h4>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    
+    </table>
+{% endblock %}

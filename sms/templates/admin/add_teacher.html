@@ -1,0 +1,29 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block body %}
+<div class="container" style="margin: 80px;">
+    <h2>Add Faculty</h2>
+    <form action="{% url 'add_teacher' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="full_name" class="form-control" placeholder="Full Name">
+        <br>
+        <input type="email" name="email" placeholder="Email" class="form-control">
+        <br>
+        <input type="tel" name="contact_number" class="form-control" placeholder="Contact Number">
+        <br>
+        <input type="text" placeholder="Mention Qualification with Commas" class="form-control" name="qualification">
+        <br>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Gender</label>
+            <select class="form-select" name="gender" id="inputGroupSelect01" required>
+              <option selected>{{student.gender}}</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option> 
+            </select>
+        </div>
+        <br><br>
+
+        <input type="submit" class="btn btn-primary form-control" value="Add Faculty">
+    </form>
+</div>
+{% endblock %}
